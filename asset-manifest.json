@@ -1,27 +1,28 @@
 {
   "files": {
-    "main.css": "/LP-Timer/static/css/main.3f7859bc.chunk.css",
-    "main.js": "/LP-Timer/static/js/main.ab02fd1b.chunk.js",
-    "main.js.map": "/LP-Timer/static/js/main.ab02fd1b.chunk.js.map",
+    "main.css": "/LP-Timer/static/css/main.2090cd6a.chunk.css",
+    "main.js": "/LP-Timer/static/js/main.7481bd85.chunk.js",
+    "main.js.map": "/LP-Timer/static/js/main.7481bd85.chunk.js.map",
     "runtime-main.js": "/LP-Timer/static/js/runtime-main.4d0928de.js",
     "runtime-main.js.map": "/LP-Timer/static/js/runtime-main.4d0928de.js.map",
-    "static/js/2.7457e1e0.chunk.js": "/LP-Timer/static/js/2.7457e1e0.chunk.js",
-    "static/js/2.7457e1e0.chunk.js.map": "/LP-Timer/static/js/2.7457e1e0.chunk.js.map",
+    "static/js/2.cc6806a3.chunk.js": "/LP-Timer/static/js/2.cc6806a3.chunk.js",
+    "static/js/2.cc6806a3.chunk.js.map": "/LP-Timer/static/js/2.cc6806a3.chunk.js.map",
     "index.html": "/LP-Timer/index.html",
-    "precache-manifest.99bf120303cba210e9aacf93ec0b846e.js": "/LP-Timer/precache-manifest.99bf120303cba210e9aacf93ec0b846e.js",
+    "precache-manifest.a11a94ead277389d692ddd08098f434f.js": "/LP-Timer/precache-manifest.a11a94ead277389d692ddd08098f434f.js",
     "service-worker.js": "/LP-Timer/service-worker.js",
-    "static/css/main.3f7859bc.chunk.css.map": "/LP-Timer/static/css/main.3f7859bc.chunk.css.map",
-    "static/js/2.7457e1e0.chunk.js.LICENSE.txt": "/LP-Timer/static/js/2.7457e1e0.chunk.js.LICENSE.txt",
+    "static/css/main.2090cd6a.chunk.css.map": "/LP-Timer/static/css/main.2090cd6a.chunk.css.map",
+    "static/js/2.cc6806a3.chunk.js.LICENSE.txt": "/LP-Timer/static/js/2.cc6806a3.chunk.js.LICENSE.txt",
     "static/media/30-seconds-verbal.wav": "/LP-Timer/static/media/30-seconds-verbal.387bfa74.wav",
     "static/media/60-seconds-verbal.wav": "/LP-Timer/static/media/60-seconds-verbal.3ce36467.wav",
     "static/media/90-seconds-verbal.wav": "/LP-Timer/static/media/90-seconds-verbal.d15918e6.wav",
     "static/media/Timer.css": "/LP-Timer/static/media/cursed-timer.ab0e848e.ttf",
+    "static/media/lp-logo.png": "/LP-Timer/static/media/lp-logo.0cf386b2.png",
     "static/media/index.css": "/LP-Timer/static/media/titillium-web-semi-bold.ce96d75e.ttf"
   },
   "entrypoints": [
     "static/js/runtime-main.4d0928de.js",
-    "static/js/2.7457e1e0.chunk.js",
-    "static/css/main.3f7859bc.chunk.css",
-    "static/js/main.ab02fd1b.chunk.js"
+    "static/js/2.cc6806a3.chunk.js",
+    "static/css/main.2090cd6a.chunk.css",
+    "static/js/main.7481bd85.chunk.js"
   ]
 }

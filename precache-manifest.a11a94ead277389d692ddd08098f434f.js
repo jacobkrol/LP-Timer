@@ -1,23 +1,23 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "90a6696f081364177d7d3e0ab8c6cb44",
+    "revision": "e620f5713c61e727ecbddb5cf43e4abc",
     "url": "/LP-Timer/index.html"
   },
   {
-    "revision": "ddead848b2b8c8c99a8a",
-    "url": "/LP-Timer/static/css/main.3f7859bc.chunk.css"
+    "revision": "ff5e0817b6e8aea40e21",
+    "url": "/LP-Timer/static/css/main.2090cd6a.chunk.css"
   },
   {
-    "revision": "14ff47a7c399ea186a76",
-    "url": "/LP-Timer/static/js/2.7457e1e0.chunk.js"
+    "revision": "ad5ef78e7bee6f8a2b7f",
+    "url": "/LP-Timer/static/js/2.cc6806a3.chunk.js"
   },
   {
     "revision": "4ba1a1c11c57ed15aa68008707a3d6b4",
-    "url": "/LP-Timer/static/js/2.7457e1e0.chunk.js.LICENSE.txt"
+    "url": "/LP-Timer/static/js/2.cc6806a3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ddead848b2b8c8c99a8a",
-    "url": "/LP-Timer/static/js/main.ab02fd1b.chunk.js"
+    "revision": "ff5e0817b6e8aea40e21",
+    "url": "/LP-Timer/static/js/main.7481bd85.chunk.js"
   },
   {
     "revision": "29ebc8d7e5bd818a8e01",
@@ -38,6 +38,10 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
     "revision": "ab0e848e0e83a85a5af69f5acf1ebe73",
     "url": "/LP-Timer/static/media/cursed-timer.ab0e848e.ttf"
+  },
+  {
+    "revision": "0cf386b2146fbe8b87b986580bfb1ae2",
+    "url": "/LP-Timer/static/media/lp-logo.0cf386b2.png"
   },
   {
     "revision": "08d37409a924ae95fff8df77747b0c42",

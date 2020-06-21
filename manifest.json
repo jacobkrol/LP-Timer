@@ -1,6 +1,6 @@
 {
-  "short_name": "React App",
-  "name": "Create React App Sample",
+  "short_name": "LP Timer",
+  "name": "LimitedPrep Timer",
   "icons": [
     {
       "src": "chrono-logo.png",
@@ -10,6 +10,6 @@
   ],
   "start_url": ".",
   "display": "standalone",
-  "theme_color": "#000000",
-  "background_color": "#ffffff"
+  "theme_color": "#222",
+  "background_color": "#F5F5F5"
 }
