@@ -1,11 +1,11 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "e620f5713c61e727ecbddb5cf43e4abc",
+    "revision": "f8d0aae0c132c0eec7773919747c856e",
     "url": "/LP-Timer/index.html"
   },
   {
-    "revision": "ff5e0817b6e8aea40e21",
-    "url": "/LP-Timer/static/css/main.2090cd6a.chunk.css"
+    "revision": "0239b2f3938d037a4323",
+    "url": "/LP-Timer/static/css/main.d30e3824.chunk.css"
   },
   {
     "revision": "ad5ef78e7bee6f8a2b7f",
@@ -16,8 +16,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/LP-Timer/static/js/2.cc6806a3.chunk.js.LICENSE.txt"
   },
   {
-    "revision": "ff5e0817b6e8aea40e21",
-    "url": "/LP-Timer/static/js/main.7481bd85.chunk.js"
+    "revision": "0239b2f3938d037a4323",
+    "url": "/LP-Timer/static/js/main.0f1bb8db.chunk.js"
   },
   {
     "revision": "29ebc8d7e5bd818a8e01",
@@ -40,8 +40,8 @@ self.__precacheManifest = (self.__precacheManifest || []).concat([
     "url": "/LP-Timer/static/media/cursed-timer.ab0e848e.ttf"
   },
   {
-    "revision": "0cf386b2146fbe8b87b986580bfb1ae2",
-    "url": "/LP-Timer/static/media/lp-logo.0cf386b2.png"
+    "revision": "4d69f09ca5ea6d328183dad7919bafe4",
+    "url": "/LP-Timer/static/media/lp-logo.4d69f09c.png"
   },
   {
     "revision": "08d37409a924ae95fff8df77747b0c42",
