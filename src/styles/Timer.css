@@ -1,0 +1,120 @@
+
+/* IMPORT FONT ASSETS */
+@font-face {
+    font-family: 'Cursed Timer';
+    src: url(../fonts/cursed-timer.ttf);
+}
+
+/* DEFINE DEFAULT TIMER SIZE */
+#timer-display {
+    font-size: 75px;
+    min-height: 114px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background-color: #FAFAFA;
+}
+#timer-display-ms {
+    font-size: 25px;
+}
+
+/* MODIFY TIMER SIZE FOR SCREEN */
+@media only screen and (min-width: 450px) {
+    #timer-display {
+        font-size: 100px;
+        min-height: 152px;
+    }
+    #timer-display-ms {
+        font-size: 33px;
+    }
+}
+@media only screen and (min-width: 700px) {
+    #timer-display {
+        font-size: 150px;
+        min-height: 228px;
+    }
+    #timer-display-ms {
+        font-size: 50px;
+    }
+}
+@media only screen and (min-width: 900px) {
+    #timer-display {
+        font-size: 200px;
+        min-height: 304px;
+        border: 2px solid gray;
+        border-radius: 5px;
+    }
+    #timer-display-ms {
+        font-size: 67px;
+    }
+}
+
+/* ARRANGE DISPLAY SIDE-BY-SIDE FOR HORIZONTAL SCREENS */
+@media only screen and (min-aspect-ratio: 2/1) and (orientation: landscape) {
+    #timer-container {
+        display: flex;
+    }
+    #timer-display {
+        flex-grow: 1;
+    }
+    /* #timer-control-panel {
+        max-width: 210px;
+    } */
+}
+
+/* DEFINE FONT FACES */
+#timer-display-min, #timer-display-sec, #timer-display-ms {
+    font-family: 'Cursed Timer', 'Titillium Web', Arial, sans-serif;
+}
+#timer-display-signal {
+    font-family: 'Titillium Web', Arial, sans-serif;
+}
+
+/* ADD COLONS */
+#timer-display-min::after {
+    content: ':';
+}
+#timer-display-ms::before {
+    content: ':';
+}
+
+/* CONTROL PANEL ALIGNMENT AND SIZING */
+#timer-control-panel {
+    text-align: left;
+    min-width: 225px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+#timer-status-container {
+    font-size: 30px;
+}
+p {
+    margin: 0;
+}
+.timer-button {
+    margin: 5px;
+    padding: 15px;
+    border: 2px solid #222;
+    border-radius: 10%;
+    cursor: pointer;
+}
+
+/* BUTTON COLORS */
+#play-button, #pause-button {
+    background: #BFB;
+}
+#stop-button {
+    background: #FBB;
+}
+#mute-button {
+    background: #EEA;
+}
+#play-button:hover, #pause-button:hover {
+    background: #6D6;
+}
+#stop-button:hover {
+    background: #D66;
+}
+#mute-button:hover {
+    background: #CC6;
+}

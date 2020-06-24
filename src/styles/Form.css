@@ -1,0 +1,31 @@
+form * {
+    display: block;
+    text-align: left;
+}
+
+form label {
+    margin: 0 0 2px 20px;
+}
+
+form *:not(label) {
+    margin: 0 0 10px 20px;
+    padding: 4px;
+}
+
+form .extend {
+    width: 80%;
+    max-width: 400px;
+}
+
+form textarea {
+    min-height: 80px;
+    font-family: inherit;
+}
+
+form input[type="submit"]:disabled {
+    cursor: progress;
+}
+
+form option {
+    font-size: 11pt;
+}
