@@ -3,9 +3,9 @@
   "name": "LimitedPrep Timer",
   "icons": [
     {
-      "src": "chrono-logo.png",
+      "src": "lp-logo.png",
       "type": "image/png",
-      "sizes": "532x640"
+      "sizes": "536x536"
     }
   ],
   "start_url": ".",
