@@ -12,7 +12,7 @@ function HowPage() {
         <div id="how-page">
             <h1>User Guide</h1>
             <h3>General Controls</h3>
-                <p>Navigate to the <Link to="/LP-Timer">home page</Link> at any time using the <img id="logo-tiny" src={LPLogo} alt="logo" /> in the top left corner of every page.</p>
+                <p>Navigate to the <Link to="/">home page</Link> at any time using the <img id="logo-tiny" src={LPLogo} alt="logo" /> in the top left corner of every page.</p>
                 <p>Click <FaPlay className="button" size={12} title="play" /> or press SPACE to begin or resume the timer. Click <FaPause className="button" size={12} title="pause" /> or press SPACE to pause the timer. Click <FaStop className="button" size={12} title="stop" /> to stop and reset the timer. Refreshing the page also resets the timer.</p>
                 <p><strong>Status: Off</strong> represents a new timer.</p>
                 <p><strong>Status: Running</strong> means the timer is running (even if you can't see it!)</p>

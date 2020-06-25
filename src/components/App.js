@@ -1,6 +1,6 @@
 import React from 'react';
 import {
-    BrowserRouter as Router,
+    HashRouter as Router,
     Switch,
     Route
 } from 'react-router-dom';
@@ -17,16 +17,16 @@ import Error404Page from './pages/Error404Page';
 
 function App() {
   return (
-    <Router>
+    <Router basename="/">
         <div className="page-container">
             <GotoHome />
             <Switch>
-                <Route exact path="/LP-Timer" component={HomePage} />
-                <Route path="/#/ext" component={ExtPage} />
-                <Route path="/#/imp" component={ImpPage} />
-                <Route path="/#/timer" component={TimerPage} />
-                <Route path="/#/guide" component={GuidePage} />
-                <Route path="/#/about" component={AboutPage} />
+                <Route exact path="/" component={HomePage} />
+                <Route path="/ext" component={ExtPage} />
+                <Route path="/imp" component={ImpPage} />
+                <Route path="/timer" component={TimerPage} />
+                <Route path="/guide" component={GuidePage} />
+                <Route path="/about" component={AboutPage} />
                 <Route component={Error404Page} />
             </Switch>
             <Footer />
