@@ -22,11 +22,11 @@ function App() {
             <GotoHome />
             <Switch>
                 <Route exact path="/LP-Timer" component={HomePage} />
-                <Route path="/ext" component={ExtPage} />
-                <Route path="/imp" component={ImpPage} />
-                <Route path="/timer" component={TimerPage} />
-                <Route path="/guide" component={GuidePage} />
-                <Route path="/about" component={AboutPage} />
+                <Route path="/#/ext" component={ExtPage} />
+                <Route path="/#/imp" component={ImpPage} />
+                <Route path="/#/timer" component={TimerPage} />
+                <Route path="/#/guide" component={GuidePage} />
+                <Route path="/#/about" component={AboutPage} />
                 <Route component={Error404Page} />
             </Switch>
             <Footer />
