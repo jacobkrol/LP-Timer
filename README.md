@@ -32,9 +32,9 @@ The `/#/about` page allows for the user to submit feedback and to learn more abo
 
 ### Save the App
 
-Saving the progressive web app locally to your mobile device is an extremely convenient way to carry the app with you all the time, regardless of an internet connection! **The current version size is 834kB**.
+Saving the progressive web app locally to your mobile device is an extremely convenient way to carry the app with you all the time, regardless of an internet connection! Check the [latest release](https://github.com/jacobkrol/LP-Timer/releases) for the current version size.
 
-Read simple instructions on how to do so at https://jacobkrol.github.io/LP-Timer/#/about
+Read simple instructions on how to save the app at https://jacobkrol.github.io/LP-Timer/#/about.
 
 ### Offer Feedback
 
