@@ -30,12 +30,13 @@ function HowPage() {
                 <p><strong>Duration:</strong> 7 minutes</p>
                 <p>This mode acts as a regular timer, allowing the user to see every second (and millisecond, if desired) as it counts down.</p>
             <h3>Save This App</h3>
-                <p>You can also locally save this app on your mobile device! It appears like a regular app, so it can be easily launched from the home screen, requires no internet connection<sup>1</sup>, and takes up very little storage space<sup>2</sup>. To save the app...</p>
+                <p>You can also locally save this app on your device! It appears like a regular app, so it can be easily launched from the home screen, requires no internet connection<sup>1</sup>, and takes up very little storage space<sup>2</sup>. To save the app...</p>
                 <p><strong>iOS:</strong> Click <FiShare size={15} title="share" />, and then select "Add to Home Screen <span className="no-break"><RiAddBoxLine size={15} title="add icon" />"</span></p>
                 <p><strong>Android:</strong> Click <BsThreeDotsVertical size={15} title="three dots for more" />, and then select "Add to Home screen"</p>
+                <p><strong>Chrome (Windows):</strong> Click <BsThreeDotsVertical size={15} title="three dots for more" />, and then select "Install LimitedPrep Timer..."</p>
                 <span className="fine-print">
-                    <p><sup>1</sup>&nbsp;&nbsp;Until your default browser cache is cleared</p>
-                    <p><sup>2</sup>&nbsp;&nbsp;&lt;1.0Mb</p>
+                    <p><sup>1</sup>&nbsp;&nbsp;Excludes updates, feedback submission, and third-party links</p>
+                    <p><sup>2</sup>&nbsp;&nbsp;&lt;1.0Mb. Check the <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">latest release</a> for a more accurate estimate.</p>
                 </span>
             <h3>More Info</h3>
                 <p>To read more about how this website works (for the other nerds), or to submit a bug / feature request for review, visit the <Link to="/about">about page</Link>.</p>
