@@ -3,6 +3,18 @@
   "name": "LimitedPrep Timer",
   "icons": [
     {
+      "src": "lp-logo-maskable-96.png",
+      "type": "image/png",
+      "sizes": "96x96",
+      "purpose": "maskable"
+    },
+    {
+      "src": "lp-logo-maskable-670.png",
+      "type": "image/png",
+      "sizes": "670x670",
+      "purpose": "maskable"
+    },
+    {
       "src": "lp-logo.png",
       "type": "image/png",
       "sizes": "536x536"
