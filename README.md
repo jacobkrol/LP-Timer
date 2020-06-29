@@ -1,68 +1,43 @@
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+# Limited Preparation Timer Web Application
 
-## Available Scripts
+A simple timer application with time signals to help the forensics community. It is available at https://jacobkrol.github.io/LP-Timer
 
-In the project directory, you can run:
+## Endpoints
 
-### `yarn start`
+### /#/
 
-Runs the app in the development mode.<br />
-Open [http://localhost:3000](http://localhost:3000) to view it in the browser.
+The root contains the button panel with links through the HashRouter to all other pages on the application.
 
-The page will reload if you make edits.<br />
-You will also see any lint errors in the console.
+### /#/ext
 
-### `yarn test`
+The `/#/ext` page contains a timer on the extemporaneous mode. This means visual signals fire for 5 seconds each at the times indicated on the `/#/about` page.
 
-Launches the test runner in the interactive watch mode.<br />
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+### /#/imp
 
-### `yarn build`
+The `/#/imp` page contains a timer on the impromptu mode. This means verbal signals fire every 30 seconds for the first 90 seconds, but can be muted via the button or hotkey. Visual signals fire for 5 seconds each at the times indicated on the `/#/about` page.
 
-Builds the app for production to the `build` folder.<br />
-It correctly bundles React in production mode and optimizes the build for the best performance.
+### /#/timer
 
-The build is minified and the filenames include the hashes.<br />
-Your app is ready to be deployed!
+The `/#/timer` page contains a timer on the plain timer mode. This means every second is counted down on the timer for the user. A toggle to view milliseconds is operational, but not yet implemented for the user.
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### /#/guide
 
-### `yarn eject`
+The `/#/guide` page contains useful information for how the application works, including much of the same information found in this README.
 
-**Note: this is a one-way operation. Once you `eject`, you can’t go back!**
+### /#/about
 
-If you aren’t satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+The `/#/about` page allows for the user to submit feedback and to learn more about the app infrastructure.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you’re on your own.
+## Other Information
 
-You don’t have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn’t feel obligated to use this feature. However we understand that this tool wouldn’t be useful if you couldn’t customize it when you are ready for it.
+### Save the App
 
-## Learn More
+Saving the progressive web app locally to your mobile device is an extremely convenient way to carry the app with you all the time, regardless of an internet connection! **The current version size is 834kB**.
 
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
+Read simple instructions on how to do so at https://jacobkrol.github.io/LP-Timer/#/about
 
-To learn React, check out the [React documentation](https://reactjs.org/).
+### Offer Feedback
 
-### Code Splitting
+I want to hear from you on how to make the app better for every user! Please feel free to submit an issue directly on this page, or submit feedback easily through the form found at https://jacobkrol.github.io/LP-Timer/#/about. All form submissions on that page are emailed to me securely, and they are additionally preserved in a Heroku database for a collective review.
 
-This section has moved here: https://facebook.github.io/create-react-app/docs/code-splitting
-
-### Analyzing the Bundle Size
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/analyzing-the-bundle-size
-
-### Making a Progressive Web App
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/making-a-progressive-web-app
-
-### Advanced Configuration
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/advanced-configuration
-
-### Deployment
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/deployment
-
-### `yarn build` fails to minify
-
-This section has moved here: https://facebook.github.io/create-react-app/docs/troubleshooting#npm-run-build-fails-to-minify
+*Jacob Krol 2020*
