@@ -1,16 +1,16 @@
 {
   "files": {
-    "main.css": "/LP-Timer/static/css/main.6bb76d53.chunk.css",
-    "main.js": "/LP-Timer/static/js/main.907b7bc4.chunk.js",
-    "main.js.map": "/LP-Timer/static/js/main.907b7bc4.chunk.js.map",
+    "main.css": "/LP-Timer/static/css/main.8d4a8015.chunk.css",
+    "main.js": "/LP-Timer/static/js/main.520048c8.chunk.js",
+    "main.js.map": "/LP-Timer/static/js/main.520048c8.chunk.js.map",
     "runtime-main.js": "/LP-Timer/static/js/runtime-main.1c009217.js",
     "runtime-main.js.map": "/LP-Timer/static/js/runtime-main.1c009217.js.map",
     "static/js/2.c996ea4f.chunk.js": "/LP-Timer/static/js/2.c996ea4f.chunk.js",
     "static/js/2.c996ea4f.chunk.js.map": "/LP-Timer/static/js/2.c996ea4f.chunk.js.map",
     "index.html": "/LP-Timer/index.html",
-    "precache-manifest.5335606c9f8ea199d6a78f8aea9d8206.js": "/LP-Timer/precache-manifest.5335606c9f8ea199d6a78f8aea9d8206.js",
+    "precache-manifest.bff1b8fbf80a47bedc89962a447dc619.js": "/LP-Timer/precache-manifest.bff1b8fbf80a47bedc89962a447dc619.js",
     "service-worker.js": "/LP-Timer/service-worker.js",
-    "static/css/main.6bb76d53.chunk.css.map": "/LP-Timer/static/css/main.6bb76d53.chunk.css.map",
+    "static/css/main.8d4a8015.chunk.css.map": "/LP-Timer/static/css/main.8d4a8015.chunk.css.map",
     "static/js/2.c996ea4f.chunk.js.LICENSE.txt": "/LP-Timer/static/js/2.c996ea4f.chunk.js.LICENSE.txt",
     "static/media/30-seconds-verbal.wav": "/LP-Timer/static/media/30-seconds-verbal.387bfa74.wav",
     "static/media/60-seconds-verbal.wav": "/LP-Timer/static/media/60-seconds-verbal.3ce36467.wav",
@@ -22,7 +22,7 @@
   "entrypoints": [
     "static/js/runtime-main.1c009217.js",
     "static/js/2.c996ea4f.chunk.js",
-    "static/css/main.6bb76d53.chunk.css",
-    "static/js/main.907b7bc4.chunk.js"
+    "static/css/main.8d4a8015.chunk.css",
+    "static/js/main.520048c8.chunk.js"
   ]
 }
