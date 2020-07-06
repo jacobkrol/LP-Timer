@@ -1,6 +1,8 @@
 # Limited Preparation Timer Web Application
 
-A simple timer application with time signals to help the forensics community. It is available at https://jacobkrol.github.io/LP-Timer
+[![MIT License](https://img.shields.io/apm/l/atomic-design-ui.svg?)](https://github.com/tterb/atomic-design-ui/blob/master/LICENSEs) [![GitHub Release](https://img.shields.io/github/release/jacobkrol/LP-Timer.svg?style=flat)]() [![Issues](https://img.shields.io/github/issues-raw/jacobkrol/LP-Timer.svg?maxAge=25000)](https://github.com/jacobkrol/LP-Timer/issues)
+
+A simple timer application with time signals to help the forensics community. It is available at https://kroljs.com/LP-Timer
 
 ## Endpoints
 
@@ -34,10 +36,10 @@ The `/#/about` page allows for the user to submit feedback and to learn more abo
 
 Saving the progressive web app locally to your mobile device is an extremely convenient way to carry the app with you all the time, regardless of an internet connection! Check the [latest release](https://github.com/jacobkrol/LP-Timer/releases) for the current version size.
 
-Read simple instructions on how to save the app at https://jacobkrol.github.io/LP-Timer/#/about.
+Read simple instructions on how to save the app at https://kroljs.com/LP-Timer/#/about.
 
 ### Offer Feedback
 
-I want to hear from you on how to make the app better for every user! Please feel free to submit an issue directly on this page, or submit feedback easily through the form found at https://jacobkrol.github.io/LP-Timer/#/about. All form submissions on that page are emailed to me securely, and they are additionally preserved in a Heroku database for a collective review.
+I want to hear from you on how to make the app better for every user! Please feel free to submit an issue directly on this page, or submit feedback easily through the form found at https://kroljs.com/LP-Timer/#/about. All form submissions on that page are emailed to me securely, and they are additionally preserved in a Heroku database for a collective review.
 
-*Jacob Krol 2020*
+*Jacob Krol (c) 2020*
