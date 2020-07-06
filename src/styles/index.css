@@ -35,3 +35,9 @@ a:hover {
     min-height: 100vh;
     padding: 0 5%;
 }
+
+@media only screen and (max-width: 385px) {
+    h1 {
+        padding-top: 70px;
+    }
+}
