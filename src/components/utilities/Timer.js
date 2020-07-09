@@ -3,10 +3,7 @@ import {
     FaPlay,
     FaPause,
     FaStop,
-    FaVolumeMute,
-    FaHourglassEnd,
-    FaHourglassHalf,
-    FaHourglassStart
+    FaVolumeMute
 } from 'react-icons/fa';
 import '../../styles/Timer.css';
 import Verbal30 from '../../audio/30-seconds-verbal.wav';
