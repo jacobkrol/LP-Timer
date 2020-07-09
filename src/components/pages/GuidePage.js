@@ -17,6 +17,7 @@ function HowPage() {
                 <p><strong>Status: Off</strong> represents a new timer.</p>
                 <p><strong>Status: Running</strong> means the timer is running (even if you can't see it!)</p>
                 <p><strong>Status: Paused</strong> represents a timer that has started, but has been paused by the user. When it is resumed, it will continue where it was when paused.</p>
+                <p> The <span id="timer-anim-ex" aria-label="indicator"></span> in the top-left corner of each timer serves as an additional indicator that the timer is running.</p>
 
             <h3>Extemporaneous Timer</h3>
                 <p><strong>Duration:</strong> 7 minutes</p>

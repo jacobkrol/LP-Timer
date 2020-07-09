@@ -21,6 +21,16 @@
     padding: 4px;
 }
 
+#timer-anim-ex {
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    margin: 0;
+    border: 2px solid rgba(40,40,40,0.5);
+    border-radius: 4px;
+    background-color: transparent;
+}
+
 .no-break {
     white-space: nowrap;
 }

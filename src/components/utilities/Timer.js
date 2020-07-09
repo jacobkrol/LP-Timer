@@ -1,5 +1,13 @@
 import React from 'react';
-import { FaPlay, FaPause, FaStop, FaVolumeMute } from 'react-icons/fa';
+import {
+    FaPlay,
+    FaPause,
+    FaStop,
+    FaVolumeMute,
+    FaHourglassEnd,
+    FaHourglassHalf,
+    FaHourglassStart
+} from 'react-icons/fa';
 import '../../styles/Timer.css';
 import Verbal30 from '../../audio/30-seconds-verbal.wav';
 import Verbal60 from '../../audio/60-seconds-verbal.wav';
@@ -22,7 +30,8 @@ class Timer extends React.PureComponent {
             signalText: null,       //string of hand signals
             isOvertime: false,      //boolean flagging overtime
             isMuted: true,          //boolean to mute verbals
-            playVerbal: 0           //int 0,30,60,90 for last verbal given
+            playVerbal: 0,          //int 0,30,60,90 for last verbal given
+            hourglass: 0
         };
     }
 
@@ -33,6 +42,7 @@ class Timer extends React.PureComponent {
         if(this.props.mode === "imp") this.setState({isMuted: false});
         //font debugging
         if(this.props.mode === "test") this.setState({signalText: "30 sec"});
+
     }
 
     componentWillUnmount() {
@@ -58,6 +68,7 @@ class Timer extends React.PureComponent {
                     break;
                 case 90:
                     verbal = Verbal90;
+                    this.setState({isMuted: true});
                     break;
                 default:
                     break;
@@ -91,6 +102,7 @@ class Timer extends React.PureComponent {
         this.setState({status: "running"}, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
+        document.getElementById("timer-anim-fill").className = "run";
     }
 
     pauseTimer = () => {
@@ -102,6 +114,7 @@ class Timer extends React.PureComponent {
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
+        document.getElementById("timer-anim-fill").className = "";
     }
 
     updateTimer = () => {
@@ -145,7 +158,7 @@ class Timer extends React.PureComponent {
                         this.setState({playVerbal: 60});
                     } else if(Number(min) === this.props.min-2 && Number(sec) === 30) {
                         //trigger 90 second verbal
-                        this.setState({playVerbal: 90, isMuted: true});
+                        this.setState({playVerbal: 90});
                     }
 
                     //hand signals
@@ -195,6 +208,7 @@ class Timer extends React.PureComponent {
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
+        document.getElementById("timer-anim-fill").className = "";
     }
 
     handleKeyPush = (evt) => {
@@ -231,12 +245,17 @@ class Timer extends React.PureComponent {
                     </div>
                 </div>
                 <div id="timer-display">
-                    {this.props.mode === "none"
-                        ? this.props.showMS
-                            ? <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span><span id="timer-display-ms">000</span></p>
-                            : <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span></p>
-                        : <p><span id="timer-display-signal">{this.state.signalText}</span></p>
-                    }
+                    <div id="timer-anim-box">
+                        <div id="timer-anim-fill"></div>
+                    </div>
+                    <div id="timer-text">
+                        {this.props.mode === "none"
+                            ? this.props.showMS
+                                ? <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span><span id="timer-display-ms">000</span></p>
+                                : <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span></p>
+                            : <p><span id="timer-display-signal">{this.state.signalText}</span></p>
+                        }
+                    </div>
                 </div>
             </div>
         )
