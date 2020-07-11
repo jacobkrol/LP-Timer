@@ -1,6 +1,6 @@
 {
   "name": "myapp",
-  "version": "1.2.1",
+  "version": "1.2.2",
   "private": true,
   "homepage": "https://kroljs.com/LP-Timer",
   "dependencies": {
@@ -9,7 +9,8 @@
     "react-icons": "^3.10.0",
     "react-router-dom": "^5.2.0",
     "react-scripts": "3.4.1",
-    "gh-pages": "3.0.0"
+    "gh-pages": "3.0.0",
+    "whatwg-fetch": "3.2.0"
   },
   "scripts": {
     "start": "react-scripts start",
@@ -22,9 +23,7 @@
   },
   "browserslist": {
     "production": [
-      ">0.2%",
-      "not dead",
-      "not op_mini all"
+      "since 2010"
     ],
     "development": [
       "last 1 chrome version",

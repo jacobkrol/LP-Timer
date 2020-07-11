@@ -1,4 +1,5 @@
 import React from 'react';
+import 'whatwg-fetch';
 import '../../styles/Form.css';
 
 class Form extends React.Component {
@@ -8,12 +9,37 @@ class Form extends React.Component {
         title: '',
         type: '',
         details: '',
+        detailsPH: '',
         disabled: false
     };
 
     handleChange = (evt) => {
-        //update state with changed input value
-        this.setState({[evt.target.name]: evt.target.value});
+        //change details placeholder when type is selected
+        if(evt.target.name === 'type') {
+            let placeholder = '';
+            switch(evt.target.value) {
+                case 'bug':
+                    placeholder = "Please provide as many details as possible, including your device and browser, if possible";
+                    break;
+                case 'enhancement':
+                    placeholder = "Describe how your feature might work here";
+                    break;
+                case 'question':
+                    placeholder = "What's up?"
+                    break;
+                default:
+                    placeholder = "";
+                    break;
+            }
+            //update changed input value and details placeholder text
+            this.setState({
+                [evt.target.name]: evt.target.value,
+                detailsPH: placeholder
+            });
+        } else {
+            //update state with changed input value
+            this.setState({[evt.target.name]: evt.target.value});
+        }
     }
 
     handleSubmit = (evt) => {
@@ -27,13 +53,14 @@ class Form extends React.Component {
             headers: {
                 'Content-Type': 'application/json',
             },
-            body: JSON.stringify(this.state)
+            credentials: "same-origin",
+            body: this.getFormData()
         };
         //define variables needed for user feedback
         let status = null;
         const errText = "An error has occurred submitting your feedback. Please verify your internet connection and try again later.\n\nError Code: ";
         //make api fetch call to server
-        fetch('https://lp-timer.herokuapp.com/add',requestOptions)
+        fetch('http://192.168.0.6:5000/add',requestOptions)
             //save http status, return response text
             .then(res => {
                 status = res.status;
@@ -58,16 +85,24 @@ class Form extends React.Component {
         evt.preventDefault();
     }
 
+    getFormData = () => {
+        let data = {...this.state};
+        delete data.disabled;
+        data['version'] = "1.2.2";
+        return JSON.stringify(data);
+    }
+
     render() {
         return (
             <form onSubmit={this.handleSubmit}>
-                <label>Your Name:</label>
+            <span className="required"> required field</span>
+                <label className="required">Your Name:</label>
                 <input type="text" name="name" onChange={this.handleChange} value={this.state.name} disabled={this.state.disabled} required />
-                <label>Your Email:</label>
+                <label className="required">Your Email:</label>
                 <input type="email" name="email" placeholder="name@example.com" onChange={this.handleChange} value={this.state.email} disabled={this.state.disabled} required />
-                <label>Title of Feedback:</label>
+                <label className="required">Title of Feedback:</label>
                 <input type="text" name="title" className="extend" placeholder="Ex: Verbals not working" onChange={this.handleChange} value={this.state.title} disabled={this.state.disabled} required />
-                <label>Type of Feedback:</label>
+                <label className="required">Type of Feedback:</label>
                 <select name="type" onChange={this.handleChange} value={this.state.type} disabled={this.state.disabled} required>
                     <option value="">Choose one...</option>
                     <option value="bug">Bug (something isn't working)</option>
@@ -75,8 +110,9 @@ class Form extends React.Component {
                     <option value="question">Question (further information is requested)&nbsp;&nbsp;</option>
                 </select>
                 <label>Feedback Details:</label>
-                <textarea name="details" className="extend" placeholder="(optional, but encouraged)" onChange={this.handleChange} value={this.state.details} disabled={this.state.disabled} />
+                <textarea name="details" className="extend" placeholder={this.state.detailsPH} onChange={this.handleChange} value={this.state.details} disabled={this.state.disabled} />
                 <input type="submit" disabled={this.state.disabled} />
+
             </form>
         )
     }

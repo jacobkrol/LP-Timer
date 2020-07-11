@@ -1,4 +1,4 @@
-form * {
+form > * {
     display: block;
     text-align: left;
 }
@@ -28,4 +28,14 @@ form input[type="submit"]:disabled {
 
 form option {
     font-size: 11pt;
+}
+
+form .required:not(span)::after {
+    content: '*';
+    color: red;
+}
+
+form span.required::before {
+    content: '*';
+    color: red;
 }
