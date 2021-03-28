@@ -1,29 +1,27 @@
 {
   "files": {
-    "main.css": "/LP-Timer/static/css/main.84a463dc.chunk.css",
-    "main.js": "/LP-Timer/static/js/main.df4b3c44.chunk.js",
-    "main.js.map": "/LP-Timer/static/js/main.df4b3c44.chunk.js.map",
-    "runtime-main.js": "/LP-Timer/static/js/runtime-main.1c009217.js",
-    "runtime-main.js.map": "/LP-Timer/static/js/runtime-main.1c009217.js.map",
-    "static/js/2.79b3f3b1.chunk.js": "/LP-Timer/static/js/2.79b3f3b1.chunk.js",
-    "static/js/2.79b3f3b1.chunk.js.map": "/LP-Timer/static/js/2.79b3f3b1.chunk.js.map",
+    "main.css": "/LP-Timer/static/css/main.bc2cf197.chunk.css",
+    "main.js": "/LP-Timer/static/js/main.0abc4b4b.chunk.js",
+    "main.js.map": "/LP-Timer/static/js/main.0abc4b4b.chunk.js.map",
+    "runtime-main.js": "/LP-Timer/static/js/runtime-main.6d3d554c.js",
+    "runtime-main.js.map": "/LP-Timer/static/js/runtime-main.6d3d554c.js.map",
+    "static/js/2.4c08ca3c.chunk.js": "/LP-Timer/static/js/2.4c08ca3c.chunk.js",
+    "static/js/2.4c08ca3c.chunk.js.map": "/LP-Timer/static/js/2.4c08ca3c.chunk.js.map",
     "index.html": "/LP-Timer/index.html",
-    "precache-manifest.93dd5d51f926c3765bf1e6cd59c8c419.js": "/LP-Timer/precache-manifest.93dd5d51f926c3765bf1e6cd59c8c419.js",
-    "service-worker.js": "/LP-Timer/service-worker.js",
-    "static/css/main.84a463dc.chunk.css.map": "/LP-Timer/static/css/main.84a463dc.chunk.css.map",
-    "static/js/2.79b3f3b1.chunk.js.LICENSE.txt": "/LP-Timer/static/js/2.79b3f3b1.chunk.js.LICENSE.txt",
-    "static/media/30-seconds-verbal.wav": "/LP-Timer/static/media/30-seconds-verbal.387bfa74.wav",
-    "static/media/60-seconds-verbal.wav": "/LP-Timer/static/media/60-seconds-verbal.3ce36467.wav",
-    "static/media/90-seconds-verbal.wav": "/LP-Timer/static/media/90-seconds-verbal.d15918e6.wav",
-    "static/media/Timer.css": "/LP-Timer/static/media/cursed-timer.ab0e848e.ttf",
-    "static/media/lp-logo-square.png": "/LP-Timer/static/media/lp-logo-square.9af2fb62.png",
-    "static/media/lp-logo.png": "/LP-Timer/static/media/lp-logo.4d69f09c.png",
-    "static/media/index.css": "/LP-Timer/static/media/titillium-web-semi-bold.ce96d75e.ttf"
+    "static/css/main.bc2cf197.chunk.css.map": "/LP-Timer/static/css/main.bc2cf197.chunk.css.map",
+    "static/js/2.4c08ca3c.chunk.js.LICENSE.txt": "/LP-Timer/static/js/2.4c08ca3c.chunk.js.LICENSE.txt",
+    "static/media/30-seconds-verbal.22ce8f06.wav": "/LP-Timer/static/media/30-seconds-verbal.22ce8f06.wav",
+    "static/media/60-seconds-verbal.7b9ba939.wav": "/LP-Timer/static/media/60-seconds-verbal.7b9ba939.wav",
+    "static/media/90-seconds-verbal.7e39c3ad.wav": "/LP-Timer/static/media/90-seconds-verbal.7e39c3ad.wav",
+    "static/media/Timer.css": "/LP-Timer/static/media/cursed-timer.da0f8a94.ttf",
+    "static/media/lp-logo-square.b6fc9fef.png": "/LP-Timer/static/media/lp-logo-square.b6fc9fef.png",
+    "static/media/lp-logo.c413b197.png": "/LP-Timer/static/media/lp-logo.c413b197.png",
+    "static/media/index.css": "/LP-Timer/static/media/titillium-web-semi-bold.3811e415.ttf"
   },
   "entrypoints": [
-    "static/js/runtime-main.1c009217.js",
-    "static/js/2.79b3f3b1.chunk.js",
-    "static/css/main.84a463dc.chunk.css",
-    "static/js/main.df4b3c44.chunk.js"
+    "static/js/runtime-main.6d3d554c.js",
+    "static/js/2.4c08ca3c.chunk.js",
+    "static/css/main.bc2cf197.chunk.css",
+    "static/js/main.0abc4b4b.chunk.js"
   ]
 }
