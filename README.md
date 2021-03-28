@@ -28,7 +28,15 @@ The `/#/guide` page contains useful information for how the application works, i
 
 ### /#/about
 
-The `/#/about` page allows for the user to submit feedback and to learn more about the app infrastructure.
+The `/#/about` page allows for the user to submit feedback and to learn more about the app's licensing and versioning.
+
+### /#/terms
+
+The `/#/terms` page contains the web app's terms of use.
+
+### /#/privacy
+
+The `/#/privacy` page contains the web app's privacy policy.
 
 ## Other Information
 
@@ -42,4 +50,4 @@ Read simple instructions on how to save the app at https://kroljs.com/LP-Timer/#
 
 I want to hear from you on how to make the app better for every user! Please feel free to submit an issue directly on this page, or submit feedback easily through the form found at https://kroljs.com/LP-Timer/#/about. All form submissions on that page are emailed to me securely, and they are additionally preserved in a Heroku database for a collective review.
 
-*Jacob Krol (c) 2020*
+*Jacob Krol (c) 2020-2021*
