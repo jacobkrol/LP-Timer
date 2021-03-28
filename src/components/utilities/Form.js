@@ -92,7 +92,7 @@ class Form extends React.Component {
     getFormData = () => {
         let data = {...this.state};
         delete data.disabled;
-        data['version'] = "1.3.0";
+        data['version'] = "1.3.1";
         return JSON.stringify(data);
     }
 
