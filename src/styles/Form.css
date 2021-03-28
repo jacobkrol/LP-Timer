@@ -7,7 +7,7 @@ form label {
     margin: 0 0 2px 20px;
 }
 
-form *:not(label) {
+form > *:not(label) {
     margin: 0 0 10px 20px;
     padding: 4px;
 }
@@ -38,4 +38,22 @@ form .required:not(span)::after {
 form span.required::before {
     content: '*';
     color: red;
+}
+
+form .inline-group {
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: center;
+    padding: 10px 0;
+}
+
+form .inline-group > label {
+    margin: 0 0 0 10px;
+}
+
+form input[type="checkbox"] {
+    height: 1.2rem;
+    width: 1.2rem;
+    margin: 0;
 }

@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import '../../styles/Form.css';
 
@@ -10,6 +11,7 @@ class Form extends React.Component {
         type: '',
         details: '',
         detailsPH: '',
+        agree: false,
         disabled: false
     };
 
@@ -36,6 +38,8 @@ class Form extends React.Component {
                 [evt.target.name]: evt.target.value,
                 detailsPH: placeholder
             });
+        } else if(evt.target.name === "agree") {
+            this.setState({agree: evt.target.checked});
         } else {
             //update state with changed input value
             this.setState({[evt.target.name]: evt.target.value});
@@ -60,7 +64,7 @@ class Form extends React.Component {
         let status = null;
         const errText = "An error has occurred submitting your feedback. Please verify your internet connection and try again later.\n\nError Code: ";
         //make api fetch call to server
-        fetch('http://192.168.0.6:5000/add',requestOptions)
+        fetch('http://lp-timer.herokuapp.com:5000/add',requestOptions)
             //save http status, return response text
             .then(res => {
                 status = res.status;
@@ -88,7 +92,7 @@ class Form extends React.Component {
     getFormData = () => {
         let data = {...this.state};
         delete data.disabled;
-        data['version'] = "1.2.2";
+        data['version'] = "1.3.0";
         return JSON.stringify(data);
     }
 
@@ -111,6 +115,10 @@ class Form extends React.Component {
                 </select>
                 <label>Feedback Details:</label>
                 <textarea name="details" className="extend" placeholder={this.state.detailsPH} onChange={this.handleChange} value={this.state.details} disabled={this.state.disabled} />
+                <div className="inline-group">
+                    <input type="checkbox" name="agree" id="agree" checked={this.state.agree} onChange={this.handleChange} required />
+                    <label htmlFor="agree" className="required">I have read and agree to the LP Timer <Link to="/terms">Terms of Service</Link> and <Link to="/privacy">Privacy Policy</Link>.</label>
+                </div>
                 <input type="submit" disabled={this.state.disabled} />
 
             </form>

@@ -1,4 +1,4 @@
-ul {
+#button-panel {
     list-style-type: none;
     margin: 0;
     padding: 0;
@@ -6,25 +6,27 @@ ul {
     flex-wrap: wrap;
 }
 
-li {
+#button-panel li {
     border: 2px solid gray;
     border-radius: 10px;
+    box-shadow: 2px 4px 4px #444;
     margin: 10px;
     flex-grow: 1;
     flex-basis: 0;
     min-width: 140px;
 }
 
-li a {
+#button-panel li a {
     display: inline-block;
-    padding: 40px 0;
+    padding: 35px 0;
     width: 100%;
+    font-size: 18px;
     border-radius: 8px;
     background-color: #BDF;
     transition: background 1s;
 }
 
-li a:hover {
+#button-panel li a:hover {
     text-decoration: none;
     background-color: #8AD;
     color: #000;

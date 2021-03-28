@@ -1,0 +1,11 @@
+.legalese *:not(h1) {
+    text-align: left;
+}
+
+.legalese ul {
+    list-style-type: square;
+}
+
+.legalese p {
+    margin: 4px 0;
+}

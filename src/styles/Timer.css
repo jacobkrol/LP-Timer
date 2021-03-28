@@ -12,6 +12,7 @@
     border: 2px solid gray;
     border-radius: 10px;
     background-color: #FAFAFA;
+    position: relative;
 }
 #timer-display-ms {
     font-size: 25px;
@@ -88,6 +89,11 @@
         width: 0%;
     }
 }
+.timer-anim {
+    position: absolute;
+    left: 15px;
+    top: 15px;
+}
 
 /* DEFINE FONT FACES */
 #timer-display-min, #timer-display-sec, #timer-display-ms {
@@ -109,6 +115,7 @@
 #timer-control-panel {
     text-align: left;
     min-width: 225px;
+    padding-right: 8px;
     display: flex;
     flex-direction: column;
     justify-content: center;
@@ -119,12 +126,22 @@
 p {
     margin: 0;
 }
-.timer-button {
+#timer-control-panel svg {
     margin: 5px;
     padding: 15px;
     border: 2px solid #222;
     border-radius: 10%;
     cursor: pointer;
+}
+#timer-tip-panel {
+    margin: 5px;
+}
+#timer-tip-panel p {
+    text-align: left;
+    font-size: 16px;
+    color: #666;
+    margin: 0;
+    font-style: italic;
 }
 
 /* BUTTON COLORS */
@@ -137,6 +154,9 @@ p {
 #mute-button {
     background: #EEA;
 }
+#preview-button {
+    background: #EBF;
+}
 #play-button:hover, #pause-button:hover {
     background: #6D6;
 }
@@ -144,5 +164,31 @@ p {
     background: #D66;
 }
 #mute-button:hover {
-    background: #CC6;
+    background: #DD6;
+}
+#preview-button:hover {
+    background: #C7C;
+}
+
+/* PREVIEW META TEXT */
+#timer-preview-overlay {
+    position: absolute;
+    top: 0;
+    left: 0;
+    z-index: 4;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+#timer-preview-meta {
+    display: inline-block;
+    text-align: center;
+    background-color: rgba(120,120,120,0.4);
+    border-radius: 8px;
+    font-size: 1.5rem;
+    padding: 10px 25px;
+    margin: 0 10px;
 }

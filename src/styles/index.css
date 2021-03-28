@@ -36,6 +36,14 @@ a:hover {
     padding: 0 5%;
 }
 
+#goto-row {
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+}
+
 @media only screen and (max-width: 385px) {
     h1 {
         padding-top: 70px;

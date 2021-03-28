@@ -1,0 +1,20 @@
+#gotosettings {
+    height: 50px;
+    width: 50px;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+    position: fixed;
+    top: 20px;
+    right: 20px;
+    border: 2px solid gray;
+    border-radius: 10px;
+    background-color: #F5F5F5;
+    box-shadow: 1px 2px 4px #444;
+    cursor: pointer;
+}
+
+#gotosettings > svg {
+    color: #222;
+}

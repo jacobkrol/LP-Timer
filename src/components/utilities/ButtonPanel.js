@@ -5,7 +5,7 @@ import '../../styles/ButtonPanel.css';
 
 function ButtonPanel() {
     return (
-        <ul>
+        <ul id="button-panel">
             <li><Link to="/ext">Extemporaneous</Link></li>
             <li><Link to="/imp">Impromptu</Link></li>
             <li><Link to="/timer">Plain Timer</Link></li>

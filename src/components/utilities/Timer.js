@@ -3,7 +3,12 @@ import {
     FaPlay,
     FaPause,
     FaStop,
-    FaVolumeMute
+    FaVolumeMute,
+    FaEye,
+    FaHourglass,
+    FaHourglassStart,
+    FaHourglassHalf,
+    FaHourglassEnd
 } from 'react-icons/fa';
 import '../../styles/Timer.css';
 import Verbal30 from '../../audio/30-seconds-verbal.wav';
@@ -20,15 +25,19 @@ class Timer extends React.PureComponent {
         super(props);
         this.state = {
             startT: 0,              //time stamp of timer start
+            delayT: 0,              //time stamp of delay start
+            previewT: 0,            //time stamp of preview start
             pauseT: 0,              //time stamp of most recent pause
             pauseSum: 0,            //sum of ms spent on pause
             updateInterval: null,   //holder for timer dom interval
-            status: "off",          //off, running, paused
+            status: "off",          //off, running, paused, starting, previewing
             signalText: null,       //string of hand signals
             isOvertime: false,      //boolean flagging overtime
             isMuted: true,          //boolean to mute verbals
             playVerbal: 0,          //int 0,30,60,90 for last verbal given
-            hourglass: 0
+            hourglass: 0,           //0 stopped, 1 - 3 moving
+            delaySignals: false,    //override to toggle signal display
+            previewMeta: null       //meta text for previewing
         };
     }
 
@@ -39,7 +48,6 @@ class Timer extends React.PureComponent {
         if(this.props.mode === "imp") this.setState({isMuted: false});
         //font debugging
         if(this.props.mode === "test") this.setState({signalText: "30 sec"});
-
     }
 
     componentWillUnmount() {
@@ -81,25 +89,53 @@ class Timer extends React.PureComponent {
     }
 
     startTimer = () => {
-        //if timer has not yet started...
-        if(this.state.status === "off") {
-            //set start time &
-            //begin and save update interval
+        let newStatus = undefined;
+        //if timer has not yet started and has delay...
+        if(this.state.status === "off" && this.props.delay > 0) {
+            //start delay timer
+            this.setState({
+                delayT: (new Date()).getTime(),
+                updateInterval: setInterval(this.updateDelay, 10),
+                delaySignals: true
+            });
+            newStatus = "starting";
+        //if timer has not yet started and no delay or delay has ended...
+        } else if(["off","starting"].includes(this.state.status)) {
+            //clear delay timer and start real timer
+            clearInterval(this.state.updateInterval);
             this.setState({
                 startT: (new Date()).getTime(),
-                updateInterval: setInterval(this.updateTimer, 10)
+                updateInterval: setInterval(this.updateTimer, 10),
+                delaySignals: false
             });
+            newStatus = "running";
         //if timer is being resumed...
-        } else {
+        } else if(this.state.status === "paused") {
             //update sum of ms spent on pause
             this.setState({pauseSum: this.state.pauseSum+(new Date()).getTime()-this.state.pauseT});
+            newStatus = "running";
         }
 
         //update timer status and print to DOM
-        this.setState({status: "running"}, () => {
-            document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
-        });
-        document.getElementById("timer-anim-fill").className = "run";
+        if(newStatus) {
+            this.setState({status: newStatus}, () => {
+                document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
+            });
+        }
+
+        // document.getElementById("timer-anim-fill").className = "run";
+    }
+
+    startPreview = () => {
+        if(this.state.status === "off") {
+            this.setState({
+                status: "previewing",
+                updateInterval: setInterval(this.updatePreview, 10),
+                previewT: (new Date()).getTime()
+            }, () => {
+                document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
+            });
+        }
     }
 
     pauseTimer = () => {
@@ -107,11 +143,125 @@ class Timer extends React.PureComponent {
         //update timer status and print to DOM
         this.setState({
             pauseT: (new Date()).getTime(),
-            status: "paused"
+            status: "paused",
+            hourglass: 0
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
-        document.getElementById("timer-anim-fill").className = "";
+        // document.getElementById("timer-anim-fill").className = "";
+    }
+
+    updateDelay = () => {
+        const now = (new Date()).getTime();
+        let sec;
+
+        if(this.state.status === "starting") {
+            sec = Math.ceil((this.props.delay*1000-(now-this.state.delayT))/1000);
+            this.setState({signalText: sec});
+            if(sec === 0) {
+                this.setState({signalText: null});
+                this.startTimer();
+            }
+        }
+    }
+
+    updatePreview = () => {
+        if(this.state.status === "previewing") {
+            const now = (new Date()).getTime();
+            const ms = now-this.state.previewT;
+
+            const verbalPreviews = [
+                {
+                    action: () => this.setState({previewMeta: "During prep, you will hear..."}),
+                    duration: 2500
+                },
+                {
+                    action: () => this.setState({previewMeta: null, playVerbal: 30}),
+                    duration: 2000
+                },
+                {
+                    action: () => this.setState({playVerbal: 60}),
+                    duration: 2000
+                },
+                {
+                    action: () => this.setState({playVerbal: 90}),
+                    duration: 2000
+                }
+            ];
+            const handPreviews = [
+                {
+                    action: () => this.setState({previewMeta: "While speaking, you will receive..."}),
+                    duration: 2500
+                },
+                {
+                    action: () => this.setState({previewMeta: null, signalText: "5 min"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "4 min"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "3 min"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "2 min"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "1 min"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "30 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "15 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "5 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "4 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "3 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "2 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "1 sec"}),
+                    duration: 1000
+                },
+                {
+                    action: () => this.setState({signalText: "TIME UP"}),
+                    duration: 2000
+                }
+            ];
+            const verbals = this.props.mode === "imp" ? verbalPreviews.concat(handPreviews) : handPreviews;
+            let t=0;
+            for(let i=0; i<verbals.length; i++) {
+                //find sum of ms up to this verbal
+                t += verbals[i].duration;
+                //execute first verbal not exceeded
+                if(ms < t) {
+                    verbals[i].action();
+                    break;
+                }
+                //if no new verbal to execute
+                if(i === verbals.length-1) {
+                    this.stopTimer();
+                }
+            }
+        }
     }
 
     updateTimer = () => {
@@ -135,8 +285,11 @@ class Timer extends React.PureComponent {
                 sec = 60-sec;
                 sec = sec < 10 ? "0"+sec : sec;
                 ms = 1000-ms;
-                ms = ms < 100 ? ms < 10 ? '00'+ms : '0'+ms : ms;
+                ms = Number(ms) > 999 ? '0' : Number(ms) < 100 ? Number(ms) < 10 ? `00${ms}` : `0${ms}` : ms;
             }
+
+            const hourglassVal = Math.floor((now-this.state.startT-this.state.pauseSum)/750)%3+1;
+            this.setState({hourglass: hourglassVal});
 
             if(this.props.mode==="none") {
                 //print updated values to DOM
@@ -184,14 +337,17 @@ class Timer extends React.PureComponent {
     stopTimer = () => {
         //cancel timer interval to avoid filling main thread
         clearInterval(this.state.updateInterval);
-        //clear timer display
-        if(this.props.mode === "none") {
-            document.getElementById("timer-display-min").innerText = this.props.min;
-            document.getElementById("timer-display-sec").innerText = '00';
-            if(this.props.showMS) document.getElementById("timer-display-ms").innerText = '000';
-        } else {
-            document.getElementById("timer-display-signal").innerText = null;
-        }
+        //clear signal override
+        this.setState({delaySignals: false}, () => {
+            //clear timer display
+            if(this.props.mode === "none") {
+                document.getElementById("timer-display-min").innerText = this.props.min;
+                document.getElementById("timer-display-sec").innerText = '00';
+                if(this.props.showMS) document.getElementById("timer-display-ms").innerText = '000';
+            } else {
+                document.getElementById("timer-display-signal").innerText = null;
+            }
+        });
         //unmute if in impromptu mode
         if(this.props.mode === "imp") this.setState({isMuted: false});
         //clear all state values &
@@ -201,11 +357,13 @@ class Timer extends React.PureComponent {
             pauseT: 0,
             pauseSum: 0,
             updateInterval: null,
-            status: "off"
+            status: "off",
+            hourglass: 0,
+            previewMeta: null
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
-        document.getElementById("timer-anim-fill").className = "";
+        // document.getElementById("timer-anim-fill").className = "";
     }
 
     handleKeyPush = (evt) => {
@@ -230,23 +388,55 @@ class Timer extends React.PureComponent {
                 <div id="timer-control-panel">
                     <p id="timer-status-container">Status: <span id="timer-status">Off</span></p>
                     <div>
-                        {this.state.status === "running"
-                            ? <FaPause id="pause-button" className="timer-button" onClick={this.pauseTimer} title="pause" size={30} />
-                            : <FaPlay id="play-button" className="timer-button" onClick={this.startTimer} title="play" size={30} />
+                        {["running", "starting"].includes(this.state.status)
+                            ? <FaPause id="pause-button" style={this.state.delaySignals ? {cursor: "not-allowed"} : {}} onClick={this.state.status === "running" ? this.pauseTimer : null} title="pause" size={30} />
+                            : <FaPlay id="play-button" onClick={this.startTimer} title="play" size={30} />
                         }
-                        <FaStop id="stop-button" className="timer-button" onClick={this.stopTimer} title="stop" size={30} />
+                        <FaStop id="stop-button" onClick={this.stopTimer} title="stop" size={30} />
                         {!this.state.isMuted
-                            ? <FaVolumeMute id="mute-button" className="timer-button" onClick={() => this.setState({isMuted: true})} title="mute" size={30} />
+                            ? <FaVolumeMute id="mute-button" onClick={() => this.setState({isMuted: true})} title="mute" size={30} />
+                            : null
+                        }
+                        {["imp","ext"].includes(this.props.mode)
+                            ? <FaEye id="preview-button" onClick={this.startPreview} title="preview signals" size={30} />
                             : null
                         }
                     </div>
+                    <div id="timer-tip-panel">
+                        <p>{this.state.delaySignals 
+                            ? "Starting timer with delay..."
+                            : this.state.status === "previewing"
+                            ? "Previewing time signals..."
+                            : `Press SPACE to ${this.state.status === "running" 
+                                ? "pause"
+                                : this.state.status === "off"
+                                ? "start"
+                                : this.state.status === "paused"
+                                ? "resume"
+                                : "[error]"}.`}</p>
+                        <p>{this.state.isMuted ? null : "Press ENTER to mute remaining verbal signals."}</p>
+                    </div>
                 </div>
                 <div id="timer-display">
-                    <div id="timer-anim-box">
+                    {/* <div id="timer-anim-box">
                         <div id="timer-anim-fill"></div>
-                    </div>
+                    </div> */}
+                    {this.state.hourglass === 0
+                        ? <FaHourglass className="timer-anim" title="idle" size={30} />
+                        : this.state.hourglass === 1
+                        ? <FaHourglassStart className="timer-anim" title="running" size={30} />
+                        : this.state.hourglass === 2
+                        ? <FaHourglassHalf className="timer-anim" title="running" size={30} />
+                        : <FaHourglassEnd className="timer-anim" title="running" size={30} />
+                    }
                     <div id="timer-text">
-                        {this.props.mode === "none"
+                        {this.state.previewMeta
+                            ?
+                            <div id="timer-preview-overlay">
+                                <p id="timer-preview-meta">{this.state.previewMeta}</p>
+                            </div>
+                        : null}
+                        {this.props.mode === "none" && !this.state.delaySignals
                             ? this.props.showMS
                                 ? <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span><span id="timer-display-ms">000</span></p>
                                 : <p><span id="timer-display-min">{this.props.min}</span><span id="timer-display-sec">00</span></p>

@@ -1,7 +1,7 @@
 import React from 'react';
 import '../../styles/GuidePage.css';
 import { Link } from 'react-router-dom';
-import { FaPlay, FaPause, FaStop, FaVolumeMute } from 'react-icons/fa';
+import { FaPlay, FaPause, FaStop, FaVolumeMute, FaHourglassEnd } from 'react-icons/fa';
 import { FiShare } from 'react-icons/fi';
 import { RiAddBoxLine } from 'react-icons/ri';
 import { BsThreeDotsVertical } from 'react-icons/bs';
@@ -15,9 +15,11 @@ function HowPage() {
                 <p>Navigate to the <Link to="/">home page</Link> at any time using the <img id="logo-tiny" src={LPLogo} alt="logo" /> in the top left corner of every page.</p>
                 <p>Click <FaPlay className="button" size={12} title="play" /> or press SPACE to begin or resume the timer. Click <FaPause className="button" size={12} title="pause" /> or press SPACE to pause the timer. Click <FaStop className="button" size={12} title="stop" /> to stop and reset the timer. Refreshing the page also resets the timer.</p>
                 <p><strong>Status: Off</strong> represents a new timer.</p>
+                <p><strong>Status: Starting</strong> is during a user-specified delay/countdown, after which your timer will begin.</p>
+                <p><strong>Status: Previewing</strong> displays during a preview of the visual (and verbal, if applicable) signals you will receive when the timer is running.</p>
                 <p><strong>Status: Running</strong> means the timer is running (even if you can't see it!)</p>
                 <p><strong>Status: Paused</strong> represents a timer that has started, but has been paused by the user. When it is resumed, it will continue where it was when paused.</p>
-                <p> The <span id="timer-anim-ex" aria-label="indicator"></span> in the top-left corner of each timer serves as an additional indicator that the timer is running.</p>
+                <p> The <FaHourglassEnd title="hourglass" size={12} /> in the top-left corner of each timer serves as an additional indicator that the timer is running.</p>
 
             <h3>Extemporaneous Timer</h3>
                 <p><strong>Duration:</strong> 7 minutes</p>
@@ -40,7 +42,7 @@ function HowPage() {
                     <p><sup>2</sup>&nbsp;&nbsp;&lt;1.0Mb. Check the <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">latest release</a> for a more accurate estimate.</p>
                 </span>
             <h3>More Info</h3>
-                <p>To read more about how this website works (for the other nerds), or to submit a bug / feature request for review, visit the <Link to="/about">about page</Link>.</p>
+                <p>To submit a bug / feature request for review, or to read about nitty-gritty things like licencing and versioning, visit the <Link to="/about">about page</Link>.</p>
         </div>
     )
 }
