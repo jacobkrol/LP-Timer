@@ -14,7 +14,7 @@ function AboutPage() {
             <h3>Licensing</h3>
                 <p>The limited preparation timer progressive web application is open-sourced under a MIT license. To read the conditions of this license, visit the <a href="https://github.com/jacobkrol/LP-Timer/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE file in the host repository</a>.</p>
             <h3>Updates</h3>
-                <p>This is LP Timer PWA v1.3.1. You can check for the latest version <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">on the project releases page</a>.</p>
+                <p>This is LP Timer PWA v1.3.2. You can check for the latest version <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">on the project releases page</a>.</p>
         </div>
     )
 }

@@ -1,6 +1,6 @@
 {
   "name": "lptimer",
-  "version": "1.3.1",
+  "version": "1.3.2",
   "private": true,
   "homepage": "https://kroljs.com/LP-Timer",
   "dependencies": {
@@ -9,7 +9,7 @@
     "react-dom": "^16.13.1",
     "react-icons": "^4.2.0",
     "react-router-dom": "^5.2.0",
-    "react-scripts": "^4.0.3",
+    "react-scripts": "3.4.1",
     "whatwg-fetch": "3.2.0"
   },
   "scripts": {
