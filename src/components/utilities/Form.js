@@ -2,6 +2,7 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import 'whatwg-fetch';
 import '../../styles/Form.css';
+import { version } from '../../../package.json';
 
 class Form extends React.Component {
     state = {
@@ -92,7 +93,7 @@ class Form extends React.Component {
     getFormData = () => {
         let data = {...this.state};
         delete data.disabled;
-        data['version'] = "1.3.2";
+        data['version'] = version;
         return JSON.stringify(data);
     }
 

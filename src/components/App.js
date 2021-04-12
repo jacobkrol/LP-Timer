@@ -23,8 +23,9 @@ function App() {
     const initSettings = {
         "delay": 0,
         "durationMin": 7,
-        "durationSec": "00",
-        "showMS": false
+        "signalDuration": 5,
+        "showMS": false,
+        "showTips": true
     };
     const [settingsOpen, setSettingsOpen] = useState(false);
     const [settings, setSettings] = useState(initSettings);
@@ -49,13 +50,25 @@ function App() {
                 <Switch>
                     <Route exact path="/" component={HomePage} />
                     <Route path="/ext">
-                        <ExtPage min={settings.durationMin} delay={settings.delay} />
+                        <ExtPage 
+                            min={settings.durationMin}
+                            delay={settings.delay}
+                            showTips={settings.showTips}
+                            signalDuration={settings.signalDuration} />
                     </Route>
                     <Route path="/imp">
-                        <ImpPage min={settings.durationMin} delay={settings.delay} />
+                        <ImpPage
+                            min={settings.durationMin}
+                            delay={settings.delay}
+                            showTips={settings.showTips}
+                            signalDuration={settings.signalDuration} />
                     </Route>
                     <Route path="/timer">
-                        <TimerPage min={settings.durationMin} delay={settings.delay} showMS={settings.showMS} />
+                        <TimerPage
+                            min={settings.durationMin}
+                            delay={settings.delay}
+                            showMS={settings.showMS}
+                            showTips={settings.showTips} />
                     </Route>
                     <Route path="/guide" component={GuidePage} />
                     <Route path="/about" component={AboutPage} />

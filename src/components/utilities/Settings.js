@@ -7,14 +7,12 @@ const reducer = (state, action) => {
             return {...state, delay: action.value};
         case 'durationMin':
             return {...state, durationMin: action.value};
-        case 'durationSec':
-            let value = String(action.value);
-            if(Number(value) < 0) value = "0";
-            if(Number(value) > 59) value = "59";
-            if(Number(value) < 10) value = "0"+String(value);
-            return {...state, durationSec: value};
+        case 'signalDuration':
+            return {...state, signalDuration: action.value};
         case 'showMS':
             return {...state, showMS: Boolean(action.value)};
+        case 'showTips':
+            return {...state, showTips: Boolean(action.value)};
         case 'all':
             return {...action.value};
         default:
@@ -23,7 +21,13 @@ const reducer = (state, action) => {
     }
 }
 
-const SanitizeInt = (val) => val.replace(/\D/g, '');
+const SanitizeInt = (element, value) => {
+    value = value.replace(/(?=\.).+/,'');
+    value = value.replace(/[^0-9]/g,'');
+    if(Number(value) < element.min) value = element.min;
+    if(Number(value) > element.max) value = element.max;
+    return Number(value);
+}
 
 function Settings({ open, setOpen, settings, setSettings }) {
     const [state, dispatch] = useReducer(reducer, settings);
@@ -44,26 +48,38 @@ function Settings({ open, setOpen, settings, setSettings }) {
                         id="settings-delay"
                         name="delay"
                         type="number"
+                        min="0"
+                        max="99"
                         value={state.delay}
-                        onChange={(event) => dispatch({modify: "delay", value: SanitizeInt(event.target.value)})} />
+                        onChange={(event) => dispatch({modify: "delay", value: event.target.value})}
+                        onBlur={(event) => dispatch({modify: "delay", value: SanitizeInt(event.target, event.target.value)})} />
                     <span>&nbsp;seconds</span>
                 </div>
                 <div className="setting-row">
-                    <label htmlFor="settings-duration-min">Duration</label>
+                    <label htmlFor="settings-duration-min">Timer Duration</label>
                     <input 
                         id="settings-duration-min"
                         name="durationMin"
                         type="number"
+                        min="1"
+                        max="60"
                         value={state.durationMin}
-                        onChange={(event) => dispatch({modify: "durationMin", value: SanitizeInt(event.target.value)})} />
+                        onChange={(event) => dispatch({modify: "durationMin", value: event.target.value})}
+                        onBlur={(event) => dispatch({modify: "durationMin", value: SanitizeInt(event.target, event.target.value)})} />
                     <span>&nbsp;minutes</span>
-                    {/* <span>&nbsp;:&nbsp;</span>
+                </div>
+                <div className="setting-row">
+                    <label htmlFor="settings-signal-duration">Display Signals</label>
                     <input 
-                        id="settings-duration-sec"
-                        name="durationSec"
+                        id="settings-signal-duration"
+                        name="signalDuration"
                         type="number"
-                        value={state.durationSec}
-                        onChange={(event) => dispatch({modify: "durationSec", value: SanitizeInt(event.target.value)})} /> */}
+                        min="1"
+                        max="59"
+                        value={state.signalDuration}
+                        onChange={(event) => dispatch({modify: "signalDuration", value: event.target.value})}
+                        onBlur={(event) => dispatch({modify: "signalDuration", value: SanitizeInt(event.target, event.target.value)})} />
+                    <span>&nbsp;seconds</span>
                 </div>
                 <div className="setting-row">
                     <input
@@ -73,6 +89,15 @@ function Settings({ open, setOpen, settings, setSettings }) {
                         checked={state.showMS}
                         onChange={(event) => dispatch({modify: "showMS", value: event.target.checked})} />
                     <label htmlFor="settings-show-ms" className="after">Show milliseconds</label>
+                </div>
+                <div className="setting-row">
+                    <input
+                        id="settings-show-tips"
+                        name="showTips"
+                        type="checkbox"
+                        checked={state.showTips}
+                        onChange={(event) => dispatch({modify: "showTips", value: event.target.checked})} />
+                    <label htmlFor="settings-show-tips" className="after">Show hint details</label>
                 </div>
                 <div id="settings-button-row">
                     <div

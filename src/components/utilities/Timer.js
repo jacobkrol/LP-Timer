@@ -171,81 +171,31 @@ class Timer extends React.PureComponent {
             const ms = now-this.state.previewT;
 
             const verbalPreviews = [
-                {
-                    action: () => this.setState({previewMeta: "During prep, you will hear..."}),
-                    duration: 2500
-                },
-                {
-                    action: () => this.setState({previewMeta: null, playVerbal: 30}),
-                    duration: 2000
-                },
-                {
-                    action: () => this.setState({playVerbal: 60}),
-                    duration: 2000
-                },
-                {
-                    action: () => this.setState({playVerbal: 90}),
-                    duration: 2000
-                }
+                { action: () => this.setState({previewMeta: "During prep, you will hear..."}), duration: 2500 },
+                { action: () => this.setState({previewMeta: null, playVerbal: 30}), duration: 2000 },
+                { action: () => this.setState({playVerbal: 60}), duration: 2000 },
+                { action: () => this.setState({playVerbal: 90}), duration: 2000 }
             ];
-            const handPreviews = [
-                {
-                    action: () => this.setState({previewMeta: "While speaking, you will receive..."}),
-                    duration: 2500
-                },
-                {
-                    action: () => this.setState({previewMeta: null, signalText: "5 min"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "4 min"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "3 min"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "2 min"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "1 min"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "30 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "15 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "5 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "4 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "3 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "2 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "1 sec"}),
-                    duration: 1000
-                },
-                {
-                    action: () => this.setState({signalText: "TIME UP"}),
-                    duration: 2000
-                }
+            let handPreviews = [
+                { action: () => this.setState({previewMeta: "While speaking, you will receive..."}), duration: 2400 },
+                { action: () => this.setState({previewMeta: null}), duration: 100 }
             ];
+            for(let m=5; m>=1; m--) {
+                if(this.props.min >= m) handPreviews.push({
+                    action: () => this.setState({signalText: `${m} min`}),
+                    duration: 1000
+                });
+            }
+            handPreviews = handPreviews.concat([
+                { action: () => this.setState({signalText: "30 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "15 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "5 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "4 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "3 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "2 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "1 sec"}), duration: 1000 },
+                { action: () => this.setState({signalText: "TIME UP"}), duration: 2000 }
+            ]);
             const verbals = this.props.mode === "imp" ? verbalPreviews.concat(handPreviews) : handPreviews;
             let t=0;
             for(let i=0; i<verbals.length; i++) {
@@ -315,14 +265,17 @@ class Timer extends React.PureComponent {
                     if(Number(min) < 6 && Number(min) > 0 && Number(sec) === 0 && this.state.signalText === null) {
                         //whole minute signals
                         this.setState({signalText: Number(min)+" min"});
-                    } else if(Number(min) < 5 && Number(sec) === 55 && this.state.signalText !== null) {
-                        //hide after 5 seconds
+                    } else if(Number(min) < 5 && Number(sec) === 60-this.props.signalDuration && this.state.signalText !== null) {
+                        //hide after declared (default 5) seconds
                         this.setState({signalText: null});
                     } else if(Number(min) === 0 && [30,15,5,4,3,2,1].includes(Number(sec))) {
                         //30, 15, last 5 signals
                         this.setState({signalText: Number(sec)+" sec"});
-                    } else if(Number(min) === 0 && [25,10].includes(Number(sec)) && this.state.signalText !== null) {
-                        //hide after 5 seconds
+                    } else if(Number(min) === 0 && 
+                        [Math.max(15, 30-this.props.signalDuration),
+                        Math.max(5, 15-this.props.signalDuration)].includes(Number(sec)) && 
+                        this.state.signalText !== null) {
+                        //hide after declared (default 5) seconds
                         this.setState({signalText: null});
                     } else if(Number(min) === 0 && Number(sec) === 0) {
                         //time up signal, flag overtime
@@ -357,13 +310,13 @@ class Timer extends React.PureComponent {
             pauseT: 0,
             pauseSum: 0,
             updateInterval: null,
+            signalText: null,
             status: "off",
             hourglass: 0,
             previewMeta: null
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
-        // document.getElementById("timer-anim-fill").className = "";
     }
 
     handleKeyPush = (evt) => {
@@ -402,25 +355,26 @@ class Timer extends React.PureComponent {
                             : null
                         }
                     </div>
-                    <div id="timer-tip-panel">
-                        <p>{this.state.delaySignals 
-                            ? "Starting timer with delay..."
-                            : this.state.status === "previewing"
-                            ? "Previewing time signals..."
-                            : `Press SPACE to ${this.state.status === "running" 
-                                ? "pause"
-                                : this.state.status === "off"
-                                ? "start"
-                                : this.state.status === "paused"
-                                ? "resume"
-                                : "[error]"}.`}</p>
-                        <p>{this.state.isMuted ? null : "Press ENTER to mute remaining verbal signals."}</p>
-                    </div>
+                    {this.props.showTips
+                        ?
+                        <div id="timer-tip-panel">
+                            <p>{this.state.delaySignals 
+                                ? "Starting timer with delay..."
+                                : this.state.status === "previewing"
+                                ? "Previewing time signals..."
+                                : `Press SPACE to ${this.state.status === "running" 
+                                    ? "pause"
+                                    : this.state.status === "off"
+                                    ? "start"
+                                    : this.state.status === "paused"
+                                    ? "resume"
+                                    : "[error]"}.`}</p>
+                            <p>{this.state.isMuted ? null : "Press ENTER to mute remaining verbal signals."}</p>
+                        </div>
+                        : null
+                    }
                 </div>
                 <div id="timer-display">
-                    {/* <div id="timer-anim-box">
-                        <div id="timer-anim-fill"></div>
-                    </div> */}
                     {this.state.hourglass === 0
                         ? <FaHourglass className="timer-anim" title="idle" size={30} />
                         : this.state.hourglass === 1

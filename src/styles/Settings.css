@@ -28,6 +28,7 @@
     border: 2px solid gray;
     max-width: 95vw;
     min-width: 350px;
+    box-shadow: 2px 4px 4px #222;
 }
 
 #setting-title {
