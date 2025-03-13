@@ -2,7 +2,7 @@ import React from 'react';
 import Form from '../utilities/Form';
 import '../../styles/AboutPage.css';
 import { FiAlertTriangle } from 'react-icons/fi';
-import { version } from '../../../package.json';
+import pkg from '../../../package.json';
 
 function AboutPage() {
     return (
@@ -15,7 +15,7 @@ function AboutPage() {
             <h3>Licensing</h3>
                 <p>The limited preparation timer progressive web application is open-sourced under a MIT license. To read the conditions of this license, visit the <a href="https://github.com/jacobkrol/LP-Timer/blob/master/LICENSE" target="_blank" rel="noopener noreferrer">LICENSE file in the host repository</a>.</p>
             <h3>Updates</h3>
-                <p>This is LP Timer PWA v{version}. You can check for the latest version <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">on the project releases page</a>.</p>
+                <p>This is LP Timer PWA v{pkg.version}. You can check for the latest version <a href="https://github.com/jacobkrol/LP-Timer/releases" target="_blank" rel="noopener noreferrer">on the project releases page</a>.</p>
         </div>
     )
 }

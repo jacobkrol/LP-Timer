@@ -21,7 +21,7 @@ import PrivacyPage from './pages/PrivacyPage';
 
 function App() {
     const initSettings = {
-        "delay": 0,
+        "delay": 15,
         "durationMin": 7,
         "signalDuration": 5,
         "showMS": false,

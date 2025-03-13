@@ -8,7 +8,7 @@ function Footer() {
             <p><Link to="/about">About LP Timer</Link></p>
             <p><Link to="/terms">Terms of Service</Link></p>
             <p><Link to="/privacy">Privacy Policy</Link></p>
-            <p><span style={{fontFamily: "Verdana, Calibri, sans-serif"}}>&copy;</span> 2020-2021 <a href="https://kroljs.com" target="_blank" rel="noopener noreferrer">Jacob Krol</a></p>
+            <p><span style={{fontFamily: "Verdana, Calibri, sans-serif"}}>&copy;</span> {new Date().getFullYear()} <a href="https://kroljs.com" target="_blank" rel="noopener noreferrer">Jacob Krol</a></p>
         </footer>
     )
 }

@@ -11,6 +11,7 @@ import {
     FaHourglassEnd
 } from 'react-icons/fa';
 import '../../styles/Timer.css';
+import Verbal0 from '../../audio/0-seconds-verbal.wav';
 import Verbal30 from '../../audio/30-seconds-verbal.wav';
 import Verbal60 from '../../audio/60-seconds-verbal.wav';
 import Verbal90 from '../../audio/90-seconds-verbal.wav';
@@ -34,7 +35,7 @@ class Timer extends React.PureComponent {
             signalText: null,       //string of hand signals
             isOvertime: false,      //boolean flagging overtime
             isMuted: true,          //boolean to mute verbals
-            playVerbal: 0,          //int 0,30,60,90 for last verbal given
+            playVerbal: -1,          //int -1,0,30,60,90 for last verbal given
             hourglass: 0,           //0 stopped, 1 - 3 moving
             delaySignals: false,    //override to toggle signal display
             previewMeta: null       //meta text for previewing
@@ -63,7 +64,10 @@ class Timer extends React.PureComponent {
         if(this.state.playVerbal !== prevState.playVerbal && !this.state.isMuted) {
             let verbal;
             switch(this.state.playVerbal) {
+                case -1:
+                    break;
                 case 0:
+                    if(this.props.delay > 0) verbal = Verbal0;
                     break;
                 case 30:
                     verbal = Verbal30;
@@ -159,7 +163,7 @@ class Timer extends React.PureComponent {
             sec = Math.ceil((this.props.delay*1000-(now-this.state.delayT))/1000);
             this.setState({signalText: sec});
             if(sec === 0) {
-                this.setState({signalText: null});
+                this.setState({signalText: null, playVerbal: 0});
                 this.startTimer();
             }
         }
@@ -170,12 +174,17 @@ class Timer extends React.PureComponent {
             const now = (new Date()).getTime();
             const ms = now-this.state.previewT;
 
-            const verbalPreviews = [
+            const readingTimePreviews = [
+                { action: () => this.setState({previewMeta: "When your reading time is over, you will hear..."}), duration: 2500 },
+                { action: () => this.setState({previewMeta: null, playVerbal: 0}), duration: 2000 }
+            ];
+            const regularVerbalPreviews = [
                 { action: () => this.setState({previewMeta: "During prep, you will hear..."}), duration: 2500 },
                 { action: () => this.setState({previewMeta: null, playVerbal: 30}), duration: 2000 },
                 { action: () => this.setState({playVerbal: 60}), duration: 2000 },
                 { action: () => this.setState({playVerbal: 90}), duration: 2000 }
             ];
+            const verbalPreviews = this.props.delay ? readingTimePreviews.concat(regularVerbalPreviews) : regularVerbalPreviews;
             let handPreviews = [
                 { action: () => this.setState({previewMeta: "While speaking, you will receive..."}), duration: 2400 },
                 { action: () => this.setState({previewMeta: null}), duration: 100 }
@@ -313,7 +322,9 @@ class Timer extends React.PureComponent {
             signalText: null,
             status: "off",
             hourglass: 0,
-            previewMeta: null
+            previewMeta: null,
+            playVerbal: -1,
+            isOvertime: false
         }, () => {
             document.getElementById("timer-status").innerText = this.state.status[0].toUpperCase()+this.state.status.substr(1);
         });
@@ -323,6 +334,7 @@ class Timer extends React.PureComponent {
         switch(evt.keyCode) {
             case 32:
                 //space bar
+                if(this.state.status === "starting") break;
                 this.state.status === "running" ? this.pauseTimer() : this.startTimer();
                 break;
             case 13:
@@ -351,7 +363,7 @@ class Timer extends React.PureComponent {
                             : null
                         }
                         {["imp","ext"].includes(this.props.mode)
-                            ? <FaEye id="preview-button" onClick={this.startPreview} title="preview signals" size={30} />
+                            ? <FaEye id="preview-button" style={this.state.status !== "off" ? {cursor: "not-allowed"} : {}} onClick={this.startPreview} title="preview signals" size={30} />
                             : null
                         }
                     </div>
@@ -369,7 +381,17 @@ class Timer extends React.PureComponent {
                                     : this.state.status === "paused"
                                     ? "resume"
                                     : "[error]"}.`}</p>
-                            <p>{this.state.isMuted ? null : "Press ENTER to mute remaining verbal signals."}</p>
+                            {this.props.mode === "imp" && <p>{this.state.isMuted ? "\u00A0" : "Press ENTER to mute remaining verbal signals."}</p>}
+                            <p>{this.state.status === "off" 
+                                ? this.props.delay > 0
+                                    ? this.props.mode === "imp"
+                                        ? `You will receive ${this.props.delay}s of reading time.`
+                                        : `Your time will begin after a ${this.props.delay}s delay.`
+                                    : this.props.mode === "imp"
+                                        ? "You will not receive reading time."
+                                        : "Your time will begin immediately on start."
+                                : "\u00A0" // blank
+                            }</p>
                         </div>
                         : null
                     }
